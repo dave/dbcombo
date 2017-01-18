@@ -1,0 +1,1 @@
+<%@ Page Language="C#" AutoEventWireup="false" Inherits="Cambro.Web.DbCombo.ServerPage" %>

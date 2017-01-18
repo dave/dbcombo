@@ -1,0 +1,6 @@
+C:\Users\d.brophy\Documents\Data\Archive\2008\DbCombo - for .net 3.5\Cambro.Web.DbCombo\bin\Release\Cambro.Web.DbCombo.dll
+C:\Users\d.brophy\Documents\Data\Archive\2008\DbCombo - for .net 3.5\Cambro.Web.DbCombo\bin\Release\Cambro.Web.DbCombo.XmlSerializers.dll
+C:\Users\d.brophy\Documents\Data\Archive\2008\DbCombo - for .net 3.5\Cambro.Web.DbCombo\bin\Release\Cambro.Web.DbCombo.xml
+C:\Users\d.brophy\Documents\Data\Archive\2008\DbCombo - for .net 3.5\Cambro.Web.DbCombo\obj\Release\ResolveAssemblyReference.cache
+C:\Users\d.brophy\Documents\Data\Archive\2008\DbCombo - for .net 3.5\Cambro.Web.DbCombo\obj\Release\Cambro.Web.DbCombo.dll
+C:\Users\d.brophy\Documents\Data\Archive\2008\DbCombo - for .net 3.5\Cambro.Web.DbCombo\obj\Release\Cambro.Web.DbCombo.XmlSerializers.dll

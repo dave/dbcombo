@@ -1,0 +1,911 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cambro.Web.DbCombo</name>
+    </assembly>
+    <members>
+        <member name="T:Cambro.Web.DbCombo.DbCombo">
+            <summary>
+            The Database DbCombo box.
+            
+            Create a file called "DbComboServer.aspx" with the following content (just one line):
+            &lt;%@ Page AutoEventWireup="false" Inherits="Cambro.Web.DbCombo.ServerPage" %>
+            
+            </summary>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.DbCombo.#ctor">
+            <summary>
+            Constructor - public DbCombo()
+            </summary>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.DbCombo.Control_OnInit(System.Object,System.EventArgs)">
+            <summary>
+            Control_OnInit
+            </summary>
+            <param name="o">object</param>
+            <param name="e">EventArgs</param>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.DbCombo.Control_OnLoad(System.Object,System.EventArgs)">
+            <summary>
+            Control_OnLoad
+            </summary>
+            <param name="o">object</param>
+            <param name="e">EventArgs</param>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.DbCombo.Control_OnPreRender(System.Object,System.EventArgs)">
+            <summary>
+            PreRender
+            </summary>
+            <param name="o"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.DbCombo.RaisePostDataChangedEvent">
+            <summary>
+            RaisePostDataChangedEvent - this raises the SelectedItemChanged event if either the Text or Value properties have changed.
+            </summary>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.DbCombo.LoadPostData(System.String,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            
+            </summary>
+            <param name="postDataKey"></param>
+            <param name="postCollection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.DbCombo.CreateChildControls">
+            <summary>
+            Creates all chile controls
+            </summary>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.DbCombo.LoadViewState(System.Object)">
+            <summary>
+            Loads persisted values from the viewstate
+            </summary>
+            <param name="savedState"></param>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.DbCombo.SaveViewState">
+            <summary>
+            Saves persisted values in the viewstate
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.DbCombo.ClearValue(System.Object,System.EventArgs)">
+            <summary>
+            this event clears the value of the control
+            </summary>
+            <param name="o"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.DbCombo.TieButton(System.Web.UI.Control,System.Web.UI.Control)">
+            <summary>
+                This ties a textbox to a button. 
+            </summary>
+            <param name="TextBoxToTie">
+                This is the textbox to tie to. It doesn't have to be a TextBox control, but must be derived from either HtmlControl or WebControl,
+                and the html control should accept an 'onkeydown' attribute.
+            </param>
+            <param name="ButtonToTie">
+                This is the button to tie to. All we need from this is it's ClientID. The Html tag it renders should support click()
+            </param>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.DbCombo.TieButton(System.Web.UI.Control,System.Web.UI.Control,System.String)">
+            <summary>
+                This ties a textbox to a button. 
+            </summary>
+            <param name="TextBoxToTie">
+                This is the textbox to tie to. It doesn't have to be a TextBox control, but must be derived from either HtmlControl or WebControl,
+                and the html control should accept an 'onkeydown' attribute.
+            </param>
+            <param name="ButtonToTie">
+                This is the button to tie to. All we need from this is it's ClientID. The Html tag it renders should support click()
+            </param>
+            <param name="formName">
+                This is the ClientID of the form that the button resides in.
+            </param>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.DbCombo.Reset">
+            <summary>
+            This method resets the DbCombo. DbCombo will not perform a requery after this method is called.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.DesignMode">
+            <summary>
+            Used internally by design-time tools.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ForceDownLevel">
+            <summary>
+            This forces the control to operate in downlevel browser mode (html 3.2 only)
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.RegistrationKey">
+            <summary>
+            This is the registration key - If you do not have one, please go to www.dbcombo.net.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ServerAssembly">
+            <summary>
+            This is the Assembly that the server will look in for the ServerMethod.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ServerType">
+            <summary>
+            This is the Type (namespace.class) that the server will look in for the ServerMethod.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ServerMethod">
+            <summary>
+            This is the name of the method that the server execute each time new results are needed. Default is DbComboMethod.
+            It should have the following signature and attribute:
+            [Cambro.Web.DbCombo.ResultsMethod(true)] public static object xxx(Cambro.Web.DbCombo.ServerMethodArgs args){}
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.DataMember">
+            <summary>
+            Use the DataMember property to specify a member from a multimember data source. For example, if 
+            you have a data source with more than one table, use the DataMember property to specify which 
+            table to bind to. Leave blank for the default.
+            Remember if you change this from it's default, you MUST change the 
+            ServerMethodEventArgs.DataMemberSecurity property in your ServerMethod.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.Debug">
+            <summary>
+            Set this to true if you are having problems. It will redirect the output of the server component to the browser window.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.DisplayResultsInDesigner">
+            <summary>
+            Set this to true if you want to preview how DbCombo will look in the designer. Please note that due to the lack of designer JavaScript support, the edges of the drop-down will not be hidden, and the up level search button will not be resized to the height of the text box.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ValidationProperty">
+            <summary>
+            Validation can occur on either the text of value properties of DbCombo. (Default: ValidationProperties.Value)
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ValidationPropertyValue">
+            <summary>
+            Internally used during validation. Please ignore this property.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.SelectSingleItemOnEnter">
+            <summary>
+            If there is only one item in the results and enter is pressed, this item will be selected if this property is set to true. (Default: true).
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.SelectSingleItemOnTab">
+            <summary>
+            If there is only one item in the results and tab is pressed, this item will be selected if this property is set to true. (Default: true).
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.TabToNextFieldOnEnter">
+            <summary>
+            When enter is pressed, DbCombo will simulate tab being pressed - e.g. skip to the next field. (Default: false).
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.CloseResultsOnBlur">
+            <summary>
+            If this is set to false, the results stay visible when the DbCombo looses focus. Default is true.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.CloseResultsOnClick">
+            <summary>
+            If this is set to false, the results stay visible when an item is clicked on. Default is true.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.CloseResultsOnEnter">
+            <summary>
+            If this is set to false, the results stay visible when enter is pressed. Default is true.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.CloseResultsOnTab">
+            <summary>
+            If this is set to false, the results stay visible when tab is pressed. Default is true.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.InvertArrow">
+            <summary>
+            The Visual Studio.NET 2003 built-in browser fires
+            the blur event of the DbCombo textbox when the image 
+            on the up-level search button is changed (from a down arrow to an up arrow). 
+            By default DbCombo will cancel the current query if this happens. If 
+            you specifically need DbCombo to work inside Visual Studio.NET 2003, set 
+            this to false. The arrow image on the button will not change while the results are open. Default is true.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.AutoPostBack">
+            <summary>
+            If this is set to true, the control will postback when either an item is clicked on, or enter is pressed on an item. Default is false.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.HideIntersectingSelectTags">
+            <summary>
+            Setting this to true will hide all select tags that would intersect with DbCombo. 
+            Select tags render on top of all objects in IE, sometimes causing the more button or status message to be obscured.
+            This function is disabled by default because the process of hiding the SELECT tags may reduce performance on complex pages.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.HideAllSelectTags">
+            <summary>
+            Setting this to true will hide all select tags when DbCombo opens. 
+            Select tags render on top of all objects in IE, sometimes causing the more button or status message to be obscured.
+            All select tags on the page will be hidden while the DbCombo drop-down remains open. 
+            This provides far better performance than HideIntersectingSelectTags especially on large pages.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ClearQueryOnUpLevelSearchButton">
+            <summary>
+            If this is set to true, clicking on the UpLevel search button will cause the contents of the text box to be cleared.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.Latency">
+            <summary>
+            This is the number of miliseconds that DbCombo waits after the last keypress before making a query.
+            The default of 300 ensures that a query is not fired on every keypress, when the user types several characters.
+            A lower latency figures may be useful when server load is not important, and when internet latency is minimal (e.g. intranet useage).
+            When Latency is set to -1, automatic searching on key presses is disabled.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ClientStateFunction">
+            <summary>
+            This client function enables you to pass information about the pages state back to your ServerMethod. This enables you to provide different results dependant on other form elements (e.g. drop-downs etc.)
+            IMPORTANT – you must include the parenthesis after the name of your function. You may optionally include parameters to pass to the function. This function must return a javascript ‘Object’ object
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ServerState">
+            <summary>
+            This server state enables you to pass information about your application state securely from the server to the ServerMethod. You should ony use this property from code (not set it in the html).
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ServerStateSecretString">
+            <summary>
+            Setting this string enables you to authenticate the ServerState Hashtable as authentic. 
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ClientOnSelectFunction">
+            <summary>
+            If specified, this javascript function is executed each time a DbCombo item is selected in the drop-down. 
+            IMPORTANT – you must NOT include the parenthesis after the name of your function. Your function must accept two strings as parameters. The first is DbCombo’s Value property; the second is the Text property. If we are unselecting from DbCombo, the value property is a blank string, and the Text property is set to whatever the textbox contains.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ServerDir">
+            <summary>
+            If the DbComboServer.aspx file is not in the current directory, please specify the directory here
+            e.g. If it is in the root directory, ServerDir should be set to "/".
+            e.g. If it is in a directory called "support" that is in the root, ServerDir should be set to "/support/".
+            e.g. If it is in a directory called "support" that is in the current directory, ServerDir should be set to "support/".
+            Note: If you change this value, the design-time view may incorrectly render the up-level search button and dbcombo logo.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.DataValueField">
+            <summary>
+            This is the name of the field in the dataset returned by the ServerMethod that will be used for the Value property of DbCombo. Remember if you change this from it's default value of 'DbComboValue', you MUST change the ServerMethodEventArgs.FieldSecurity property in your ServerMethod.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.DataTextField">
+            <summary>
+            This is the name of the field in the dataset returned by the ServerMethod that will be used for the Text property of DbCombo. Remember if you change this from it's default value of 'DbComboText', you MUST change the ServerMethodEventArgs.FieldSecurity property in your ServerMethod.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.Value">
+            <summary>
+            This is the currently selected value, provided by the DbComboValue db field
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.Text">
+            <summary>
+            This is the text of the currently selected value, provided by the DbComboText db field
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ReQueryText">
+            <summary>
+            This is the re-query text. This must be properly set to initiate a re-querey on page load to occur.<br></br>
+            This is the last peice of text that was actually typed by the user in the text box. It is usually 
+            smaller than the selected text and, when queried on, will usually return a larger number or items.<br></br>
+            The text property, when queried, will usually only return one record. On postback DbCombo remembers 
+            what was last queried on, and uses this for a re-query. You can force a re-query on page load by 
+            entering a value for this property, and the ReQueryRecordCount property.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ReQueryRecords">
+            <summary>
+            This is the number of records to return in a re-query. Defaults to the 10.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ReQueryOnLoad">
+            <summary>
+            This property determines if DbCombo will perform a re-query the next time it loads. It is initialy set to false, but if a query is attempted and the page is posted back, it will become true. Set to true initially to force a re-query. (default: false).
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ReQueryDisabled">
+            <summary>
+            If this is set to true, the control will not perform a re-query on load. If set to false, the control will perform a re-query if necessary. (Default: false).
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.TextBoxColumns">
+            <summary>
+            This sets the size of the text-box (defaults to 30)
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.DropDownRows">
+            <summary>
+            This sets the number of rows in the drop-box (defaults to 10)
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.MaxLength">
+            <summary>
+            This sets the maximum length of the text-box - if 0, then unlimited. Default is 0. Note: this only affects text input. If an item longer than the MaxLength is selected, it will be displayed in full.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.TabIndex">
+            <summary>
+            This sets the tab index of the text box. The tab index of the up level search button is always set to -1. Tab indexes of other buttons follow in sequence from the main tabindex. Defaults to 1.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.UpLevelButtonStyle">
+            <summary>
+            This is the style html attribute of the up-level buttons in the control. (Except the 'More...' button in the status panel).
+            Default = "border:solid 1px #999999;margin-left:-1;font-weight:bold;".
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.UpLevelMoreResultsButtonStyle">
+            <summary>
+            This is the style html attribute of the 'More...' button in the status panel.
+            Default: "border:solid 1px #999999;height:23px;".
+            The hard-coded height of 23px fixes the button at the same height as the DbCombo logo and link. This ensures the button doesn't display smaller than the logo, as this situation doesn't look good.
+            If you disable the link, you probably want to remove the hard-coded height here.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.DownLevelButtonStyle">
+            <summary>
+            This is the style html attribute of all the down-level buttons in the control
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.TextBoxStyle">
+            <summary>
+            This is the style html attribute of the text box. Default: "border:solid 1px #999999;"
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ResultsBackgroundSpanStyle">
+            <summary>
+            This is the style html attribute of the background of the UpLevel results
+            Default: "position:absolute;background-color:#ffffff;border:solid 1px #999999;".
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ResultsInnerSpanStyle">
+            <summary>
+            This is the style html attribute of the Inner of the UpLevel results
+            Default: "border-bottom:solid 1px #999999;"
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ResultsSelectBoxStyle">
+            <summary>
+            This is the style html attribute of the results list
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.StatusMessageStyle">
+            <summary>
+            This is the style html attribute of the status messages (Default "padding:5px;font-face:Arial, Verdana, Sans-serif;font-size:x-small;")
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.MoreResultsBarStyle">
+            <summary>
+            This is the style html attribute of the 'more results' bar (the area that contains the 'more' button in up-level mode)
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.MainSpanStyle">
+            <summary>
+            This is the style html attribute of the main span that encloses the whole control. 
+            You may want to set this to "display:block;" to draw the control in a block.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ResultsSpanTweakX">
+            <summary>
+            NOTE: The problem that caused this has been solved, so you should never need this. (I've left it in, just in case). The results span can be misaligned by an IE browser bug. If DbCombo is contained an element that has a border property set in a class definition, the width of the border will not be included in the offset of the results span. This will cause a misalignment. Tweak this variable until the edge of the results span is aligned with the edge of the text box. The first person providing a fix for this problem will receive a free copy of DbCombo.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ResultsSpanTweakY">
+            <summary>
+            NOTE: The problem that caused this has been solved, so you should never need this. (I've left it in, just in case). The results span can be misaligned by an IE browser bug. If DbCombo is contained an element that has a border property set in a class definition, the height of the border will not be included in the offset of the results span. This will cause a misalignment. Tweak this variable until the top of the results span is aligned with the bottom of the text box. The first person providing a fix for this problem will receive a free copy of DbCombo.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.UpLevelButtonClass">
+            <summary>
+            This is the class html attribute of all the up-level buttons in the control (Except the 'More...' button in the status panel.)
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.UpLevelMoreResultsButtonClass">
+            <summary>
+            This is the class html attribute of the 'More...' button in the status panel
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.DownLevelButtonClass">
+            <summary>
+            This is the class html attribute of all the down-level buttons in the control
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.TextBoxClass">
+            <summary>
+            This is the class html attribute of the text box
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ResultsBackgroundSpanClass">
+            <summary>
+            This is the class html attribute of the background of the UpLevel results
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ResultsInnerSpanClass">
+            <summary>
+            This is the class html attribute of the background of the UpLevel results
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ResultsSelectBoxClass">
+            <summary>
+            This is the class html attribute of the results list
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.StatusMessageClass">
+            <summary>
+            This is the class html attribute of the status messages
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.MoreResultsBarClass">
+            <summary>
+            This is the class html attribute of the 'more results' bar (the area that contains the 'more' button in up-level mode)
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.MainSpanClass">
+            <summary>
+            This is the class html attribute of the main span that encloses the whole control. 
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.TextClearButton">
+            <summary>
+            The text that appears in the 'Clear' button. (Default: "Clear")
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.TextAlt">
+            <summary>
+            The text that appears in the ALT attribute of the textbox. This is useful for screen-readers.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.TextDownLevelSearchButton">
+            <summary>
+            The text that appears in the down-level 'Search' button. (Default: "Search")
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.TextUpLevelSearchButton">
+            <summary>
+            This text appears in the up-level search button (this button is hidden by default).
+            (Default: "\/")
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.TextLoading">
+            <summary>
+            The text that appears in the status message while DbCombo is loading more results. (Default: "Loading")
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.TextNoResults">
+            <summary>
+            The text that appears when there are no results to display (Default: "No results")
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.TextMoreButton">
+            <summary>
+            The text that appears on the 'More' button (Default: "More...")
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.TextSelectButton">
+            <summary>
+            The text that appears on the 'Select' button (DownLevel only) (Default: "Select")
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.TextHelpButton">
+            <summary>
+            The text that appears on the help button (Default: "?")
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.TextUpLevelHelpBox">
+            <summary>
+            The text that appears in the UpLevel help box (Default: "This textbox will auto-complete as you type.\nEnter a few letters of the item you're looking for, and a pop-up will appear listing possible values.")
+            Note - use "\n" for a new line, and remember to escape certain characters - e.g. "'" must be written as "\'".
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.TextDownLevelHelpBox">
+            <summary>
+            The text that appears in the DownLevel help box (Default: "Enter a few letters of the item you\'re looking for, and press the \'Search\' button. A list will appear with possible values.")
+            Note - use "\n" for a new line, and remember to escape certain characters - e.g. "'" must be written as "\'".
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ShowUpLevelHelpButton">
+            <summary>
+            This hides or displays the UpLevel help button
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ShowDownLevelHelpButton">
+            <summary>
+            This hides or displays the DownLevel help button
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ShowUpLevelSearchButton">
+            <summary>
+            This hides or displays the up-level search button (this button is hidden by default). The up-level search button acts like a combo-box button, allowing a blank search to be performed.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ShowDbComboLink">
+            <summary>
+            This hides or displays the DbCombo.net logo link.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.UpLevelSearchButtonType">
+            <summary>
+            Determines whether the Up-Level search button displays as a string or a graphic.
+            </summary>
+        </member>
+        <member name="E:Cambro.Web.DbCombo.DbCombo.GetDownLevelState">
+            <summary>
+            This event is used to generate the state hashtable in downlevel browser mode. The event should take a DbCombo as a parameter, and return a Hashtable.
+            </summary>
+        </member>
+        <member name="E:Cambro.Web.DbCombo.DbCombo.SelectedItemChanged">
+            <summary>
+            This event fires on the server when the selected item has changed since the last postback.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.NewVersionAvailable">
+            <summary>
+            Used by the designer to persist whether a new version is available.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ErrorBoxType">
+            <summary>
+            This allows you to specify the way that DbCombo handles errors on the server.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.ErrorBoxCustomText">
+            <summary>
+            If ErrorBoxType = Custom, this string is used in the pop-up dialogue for all errors.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DbCombo.DownLevel">
+            <summary>
+            This read-only bool shows whether the control should render in DownLevel mode
+            </summary>
+        </member>
+        <member name="T:Cambro.Web.DbCombo.DbCombo.ButtonTypes">
+            <summary>
+            Button types - Graphic or Text
+            </summary>
+        </member>
+        <member name="F:Cambro.Web.DbCombo.DbCombo.ButtonTypes.Graphic">
+            <summary>
+            Graphic buttons display a graphic.
+            </summary>
+        </member>
+        <member name="F:Cambro.Web.DbCombo.DbCombo.ButtonTypes.Text">
+            <summary>
+            Text buttons display a string.
+            </summary>
+        </member>
+        <member name="T:Cambro.Web.DbCombo.DbCombo.ValidationProperties">
+            <summary>
+            Validation can occur on either the text of value properties of DbCombo.
+            </summary>
+        </member>
+        <member name="F:Cambro.Web.DbCombo.DbCombo.ValidationProperties.Value">
+            <summary>
+            Value property is validated on. The value will always be blank if an item is not selected from the drop-down.
+            </summary>
+        </member>
+        <member name="F:Cambro.Web.DbCombo.DbCombo.ValidationProperties.Text">
+            <summary>
+            Text property is validated on.
+            </summary>
+        </member>
+        <member name="T:Cambro.Web.DbCombo.DbCombo.ErrorBoxTypes">
+            <summary>
+            This allows you to specify the way that DbCombo handles errors on the server.
+            </summary>
+        </member>
+        <member name="F:Cambro.Web.DbCombo.DbCombo.ErrorBoxTypes.Auto">
+            <summary>
+            If an error occurs on the server, DbCombo will display a pop-up dialogue detailing the error.
+            </summary>
+        </member>
+        <member name="F:Cambro.Web.DbCombo.DbCombo.ErrorBoxTypes.None">
+            <summary>
+            If an error occurs on the server, DbCombo will ignore the error.
+            </summary>
+        </member>
+        <member name="F:Cambro.Web.DbCombo.DbCombo.ErrorBoxTypes.Custom">
+            <summary>
+            If an error occurs on the server, DbCombo will display a pop-up dialogue with custom text in it. Adjust the CustomErrorText property to set the error text.
+            </summary>
+        </member>
+        <member name="T:Cambro.Web.DbCombo.SimpleResult">
+            <summary>
+            This generates a simple set of data that DbCombo will accept from a ServerMethod.
+            </summary>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.SimpleResult.#ctor(System.String,System.String[],System.String,System.String[])">
+            <summary>
+            This generates a simple set of data that DbCombo will accept from a ServerMethod.
+            </summary>
+            <param name="FirstColumnName">The name of the first column (e.g. DbComboText)</param>
+            <param name="FirstColumnValues">A string array containing the values of the members of the first column.</param>
+            <param name="SecondColumnName">The name of the second column (e.g. DbComboValue)</param>
+            <param name="SecondColumnValues">A string array containing the values of the members of the first column.</param>
+        </member>
+        <member name="T:Cambro.Web.DbCombo.ServerMethodArgs">
+            <summary>
+            This is the parameter for the ServerMethod function.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.ServerMethodArgs.Query">
+            <summary>
+            This is the query that the user has entered that caused this event.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.ServerMethodArgs.Top">
+            <summary>
+            This is the maximum number of records to return.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.ServerMethodArgs.ClientState">
+            <summary>
+            This is the Hashtable of state returned by the client.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.ServerMethodArgs.ServerState">
+            <summary>
+            This is the hashtable of state returned by the server. Remember to authenticate it with the Authenticate method.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.ServerMethodArgs.UpLevel">
+            <summary>
+            This is whether the browser is in up-level mode.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.ServerMethodArgs.FieldSecurity">
+            <summary>
+            This determines which fields are available to the client. You only need 
+            to change this if you have changed the DataValueField or DataTextField 
+            properties. This field is necessary because the request comes from an 
+            untrusted source. 
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.ServerMethodArgs.FieldSubset">
+            <summary>
+            If FieldSecurity is set to IncludeFieldSubset or ExcludeFieldSubset, 
+            this arraylist contains all fields that are in the subset. Note: 
+            'DbComboValue' and 'DbComboText' are NOT included by defailt, and must 
+            be added if needed.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.ServerMethodArgs.DataMemberSecurity">
+            <summary>
+            This determines which DataMembers are available to the client. You only 
+            need to change this if you have specified a value for DataMember. This 
+            field is necessary because the request comes from an untrusted source.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.ServerMethodArgs.DataMemberSubset">
+            <summary>
+            If DataMemberSecurity is set to IncludeDataMemberSubset or 
+            ExcludeDataMemberSubset, this arraylist contains all DataMembers that are 
+            in the subset.
+            </summary>
+        </member>
+        <member name="T:Cambro.Web.DbCombo.FieldSecurity">
+            <summary>
+            This enum determines which fields are available to the client. This field is necessary because the request comes from an untrusted source.
+            </summary>
+        </member>
+        <member name="F:Cambro.Web.DbCombo.FieldSecurity.Default">
+            <summary>
+            Default - mose secure - only the default DbComboValue and DbComboText fields are available to the client.
+            </summary>
+        </member>
+        <member name="F:Cambro.Web.DbCombo.FieldSecurity.IncludeFieldSubset">
+            <summary>
+            IncludeFieldSubset - Only fields contained in the field subset are available to the client. Add each required field to the ArrayList FieldSubset.
+            </summary>
+        </member>
+        <member name="F:Cambro.Web.DbCombo.FieldSecurity.ExcludeFieldSubset">
+            <summary>
+            ExcludeFieldSubset - All fields are available to the client EXCEPT those contained in the field subset. Add each required field to the ArrayList FieldSubset.
+            </summary>
+        </member>
+        <member name="F:Cambro.Web.DbCombo.FieldSecurity.AllFields">
+            <summary>
+            AllFields - least secure - all fields are available to the client.
+            </summary>
+        </member>
+        <member name="T:Cambro.Web.DbCombo.FieldSecurityClass">
+            <summary>
+            Simple class used to hold the FieldSecurity value.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.FieldSecurityClass.Value">
+            <summary>
+            The FieldSecurity value.
+            </summary>
+        </member>
+        <member name="T:Cambro.Web.DbCombo.DataMemberSecurity">
+            <summary>
+            This enum determines which DataMembers are available to the client. This field is necessary 
+            because the request comes from an untrusted source.
+            </summary>
+        </member>
+        <member name="F:Cambro.Web.DbCombo.DataMemberSecurity.Default">
+            <summary>
+            Default - mose secure - only the default DataMember is available to the client.
+            </summary>
+        </member>
+        <member name="F:Cambro.Web.DbCombo.DataMemberSecurity.IncludeDataMemberSubset">
+            <summary>
+            IncludeDataMemberSubset - Only DataMembers contained in the DataMember subset are available 
+            to the client. Add each required DataMember to the ArrayList DataMemberSubset.
+            </summary>
+        </member>
+        <member name="F:Cambro.Web.DbCombo.DataMemberSecurity.ExcludeDataMemberSubset">
+            <summary>
+            ExcludeFieldSubset - All DataMembers are available to the client EXCEPT those contained 
+            in the DataMember subset. Add each excluded field to the ArrayList DataMemberSubset.
+            </summary>
+        </member>
+        <member name="F:Cambro.Web.DbCombo.DataMemberSecurity.AllDataMembers">
+            <summary>
+            AllDataMembers - least secure - all DataMembers are available to the client.
+            </summary>
+        </member>
+        <member name="T:Cambro.Web.DbCombo.DataMemberSecurityClass">
+            <summary>
+            Simple class used to hold the DataMemberSecurity value.
+            </summary>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.DataMemberSecurityClass.Value">
+            <summary>
+            The DataMemberSecurity value.
+            </summary>
+        </member>
+        <member name="T:Cambro.Web.DbCombo.SecureHashtable">
+            <summary>
+            This is a hashtable that may be verified as authentic with the Authenticate method.
+            </summary>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.SecureHashtable.Authenticate(System.String)">
+            <summary>
+            Use this method to verify that the Hashtable has not been tampered with while on the client. Always returns true when in Down-Level browser mode, and there is no round-trip to the browser.
+            </summary>
+            <param name="secretString">This should be the same as in your DbCombo control.</param>
+            <returns>true if the data has not been tampered with, false if it has been. </returns>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.SecureHashtable.Authenticate">
+            <summary>
+            Use this method to verify that the Hashtable has not been tampered with while on the client. This overload uses the default secret string.
+            </summary>
+            <returns>true if the data has not been tampered with, false if it has been.</returns>
+        </member>
+        <member name="T:Cambro.Web.DbCombo.DownLevelStateDelegate">
+            <summary>
+            This is the delegate or the DownLevelStateFunction event
+            </summary>
+        </member>
+        <member name="T:Cambro.Web.DbCombo.ResultsMethodAttribute">
+            <summary>
+            This attribute tags a method as able to be executed by a request to the server page of DbCombo, and results returned to the web client. 
+            </summary>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.ResultsMethodAttribute.#ctor(System.Boolean)">
+            <summary>
+            This attribute tags a method as able to be executed by a request to the server page of DbCombo, and results returned to the web client. 
+            </summary>
+            <param name="allowResults">Set this to true to allow the method to be executed by DbComboServer</param>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.ResultsMethodAttribute.AllowResults">
+            <summary>
+            Set this to true to allow the method to be executed by DbComboServer
+            </summary>
+        </member>
+        <member name="T:Cambro.Web.DbCombo.ServerPage">
+            <summary>
+            This is the page that delivers the xml results, and the JavaScript resource file.
+            </summary>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.ServerPage.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:Cambro.Web.DbCombo.Design.DbComboDesigner">
+            <summary>
+            Designer - used internally when DbCombo is in Visual Studio .NET design-time mode
+            </summary>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.Design.DbComboDesigner.#ctor">
+            <summary>
+            Used internally when DbCombo is in Visual Studio .NET design-time mode
+            </summary>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.Design.DbComboDesigner.StartAsync(Cambro.Web.DbCombo.DbCombo)">
+            <summary>
+            StartAsync
+            </summary>
+            <param name="MyDbCombo"></param>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.Design.DbComboDesigner.AsyncMethod(Cambro.Web.DbCombo.DbCombo)">
+            <summary>
+            AsyncMethod
+            </summary>
+            <param name="MyDbCombo"></param>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.Design.DbComboDesigner.GetDesignTimeHtml">
+            <summary>
+            Used internally when DbCombo is in Visual Studio .NET design-time mode
+            </summary>
+            <returns>n/a</returns>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.Design.DbComboDesigner.GetErrorDesignTimeHtml(System.Exception)">
+            <summary>
+            Used internally when DbCombo is in Visual Studio .NET design-time mode
+            </summary>
+            <param name="e">n/a</param>
+            <returns>n/a</returns>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.Design.DbComboDesigner.OnControlResize">
+            <summary>
+            Used internally when DbCombo is in Visual Studio .NET design-time mode
+            </summary>
+        </member>
+        <member name="M:RegistrationDetails.UrlDeSerialize(System.String)">
+            <summary>
+            UrlDeserialize - this deserialises any object from a valid, search-engine compiant url (using a-z, A-Z, 0-9, -, ~)
+            </summary>
+        </member>
+        <member name="M:RegistrationDetails.UrlTextDeSerialize(System.String)">
+            <summary>
+            UrlTextDeserialize - this deserialises a string created with UrlTextSerialize int a Unicode string.
+            </summary>
+            <param name="s">url string</param>
+            <returns>unicode string</returns>
+        </member>
+        <member name="T:Cambro.Web.DbCombo.net.dbcombo.www.wsLatestBuild">
+            <remarks/>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.net.dbcombo.www.wsLatestBuild.#ctor">
+            <remarks/>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.net.dbcombo.www.wsLatestBuild.GetLatestBuild(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.net.dbcombo.www.wsLatestBuild.BeginGetLatestBuild(System.Int32,System.AsyncCallback,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.net.dbcombo.www.wsLatestBuild.EndGetLatestBuild(System.IAsyncResult)">
+            <remarks/>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.net.dbcombo.www.wsLatestBuild.GetLatestBuildAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.net.dbcombo.www.wsLatestBuild.GetLatestBuildAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Cambro.Web.DbCombo.net.dbcombo.www.wsLatestBuild.CancelAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="E:Cambro.Web.DbCombo.net.dbcombo.www.wsLatestBuild.GetLatestBuildCompleted">
+            <remarks/>
+        </member>
+        <member name="T:Cambro.Web.DbCombo.net.dbcombo.www.GetLatestBuildCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:Cambro.Web.DbCombo.net.dbcombo.www.GetLatestBuildCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:Cambro.Web.DbCombo.net.dbcombo.www.GetLatestBuildCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+    </members>
+</doc>
