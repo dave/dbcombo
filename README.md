@@ -1,0 +1,2 @@
+# dbcombo
+I created dbcombo.net back in 2000, and it was mildly commercially successful for a few years. I never got round to updating it to use modern browsers, so it only worked in older versions of Internet Explorer. We stopped selling it in about 2006, and left a zip file of the source for anyone to download. I shut down the website in about 2010, and forgot about it. Incredibly, in 2017 someone contacted me on Facebook asking for the source code. That's right - someone is still using it in an ancient system somewhere. Amazing. Heres the source if anyone needs it.
